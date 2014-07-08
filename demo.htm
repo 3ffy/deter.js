@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Deter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UX Experiment : get a client size determinist color or identicon to improve login form experience.">
+    <meta name="author" content="3ffy - Aurélien GY">
+
+	<!-- The styles -->
+	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+	
+	<style>
+		.colorBox{
+			display:block;
+			border:1px solid #cccccc;
+			width:22px;
+			height:22px;
+			margin-left:10px;
+			transition:background 1s;
+		}
+		section#demo p{
+			clear:both;
+		}
+		
+		p#password5{
+			float:left;
+			position:relative;
+		}
+		#testPassword5{
+			padding-right:30px;
+			width:180px;
+		}
+		p#password5 .identicon{
+			position: absolute;
+			right: 3px;
+			bottom: 7px;
+		}
+	</style>
+
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	
+	<script src="asset/jquery.md5.min.js"></script>
+	<script src="asset/jquery.identicon5.packed.js"></script>
+	<script src="deter.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			
+			/**
+			 * Modify current input shape
+			 */
+			$("#testPassword1").keyup(function(){
+				var deter = $.deter(
+							 $(this).val(),
+							 true,
+							 {rgba:0.6});
+				
+				//if no deter value, come back to the initial state
+
+				if(deter.hex)
+				{
+					var boxShadowValue = 'inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px ' + deter.rgba;
+					
+					$(this)
+						.css('-webkit-box-shadow', boxShadowValue)
+						.css('-moz-box-shadow', boxShadowValue)
+						.css('box-shadow', boxShadowValue)
+						.css('border-color', deter.hex);	
+				}
+				else
+				{
+					$(this)
+						.css('-webkit-box-shadow', '')
+						.css('-moz-box-shadow', '')
+						.css('box-shadow', '')
+						.css('border-color', '');	
+				}
+			});
+			
+			/**
+			 * Modify background color of a sibling box.
+			 */
+			$("#testPassword2").keyup(function(){				
+				var deter = $.deter(
+							 $(this).val(),
+							 true);
+	 
+				//if no deter value, come back to the initial state (transparent background)
+				$('.colorBox').css(
+					'background-color',
+					 deter.hex ? deter.hex : "");
+			});
+			
+			/**
+			 * Generate an identicon into sibling element.
+			 */
+			$("#testPassword3").keyup(function(){
+				var deter = $.deter(
+							 $(this).val(),
+							 true,
+							 {hex:true});
+				
+				//if no deter value, delete content of the dom element
+				$(this).parent().find('.identicon')
+					.identicon(
+						deter.md5,
+						deter.hex,
+						{rotate:true, size:100});
+
+			});
+			
+			/**
+			 * Generate an identicon into sibling element, only on change.
+			 */
+			$("#testPassword4").change(function(){
+				var deter = $.deter(
+							 $(this).val(),
+							 true,
+							 {hex:true});
+				
+				//if no deter value, delete content of the dom element
+				$(this).parent().find('.identicon')
+					.identicon(
+						deter.md5,
+						deter.hex,
+						{rotate:true, size:100});
+
+			});
+			
+			/**
+			 * A more realistic identicon password case
+			 */
+			$("#testPassword5").keyup(function(){
+				var deter = $.deter(
+							 $(this).val(),
+							 true);
+				
+				//if no deter value, delete content of the dom element
+				$(this).parent().find('.identicon')
+					.identicon(
+						deter.md5,
+						deter.hex,
+						{rotate:true, size:25});
+
+			});
+		});
+	</script>
+
+  </head>
+
+  <body>
+	
+    <div id="body-container" class="container-fluid">
+		<div class="row-fluid" >
+			<div id="content" class="span12" >
+			  <!--Body content-->
+
+				<section id="demo">
+					<h2>Demo</h2>
+					
+					<p>
+						<label for="testPassword1">Change password input aspect : </label>
+						<input id="testPassword1" type="password" ></input>
+					</p>
+					<p>					
+						<label for="testPassword2">Change background of a sibling box (with css3 transition) : </label>
+						<input id="testPassword2" type="password" style="float:left;" ></input>
+						<div class="colorBox" style="float:left;"></div>
+					</p>
+					<p>					
+						<label for="testPassword3">Generate an identicon (or a colored box on old browsers) : </label>
+						<input id="testPassword3" type="password" style="float:left;" ></input>
+						<span class="identicon" style="float:left;"></span>
+					</p>
+					<p>					
+						<label for="testPassword4">Bind only on the "change" event : </label>
+						<input id="testPassword4" type="password" style="float:left;"></input>
+						<span class="identicon" style="float:left;"></span>
+					</p>
+					<p id="password5">					
+						<label for="testPassword5">Realistic study case </label>
+						<input id="testPassword5" type="password" style="float:left;"></input>
+						<span class="identicon" style="float:left;"></span>
+					</p>
+				</section>
+				
+			</div>
+		</div>
+	</div>
+	
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+  	<script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
+  </body>
+</html>
