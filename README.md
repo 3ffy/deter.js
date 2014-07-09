@@ -66,7 +66,7 @@ $('#testPassword2').deter(function(deter, value){
 });
 ```
 
-*Options description (and default values):*
+**Options description (and default values):**
 
 ```javascript
 //true if you want the result as a sequence (see below)
@@ -90,9 +90,8 @@ selectorDescendant: null
 
 
 --------------
-------------
 
-*In addition, there is 2 handy utilities packaged into jquery $ method.*
+*In addition, there is 2 handy utilities packaged into JQuery `$` method.*
 
 ### $.hexToRgb
 
