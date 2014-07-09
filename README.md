@@ -1,23 +1,45 @@
 Deter
 =====
 
-UX Experiment : get a client size determinist color or identicon to improve login form experience
+UX Experiment : provide a client sided graphical fingerprint to improve website password experiences.
 
 The problem
 -----------
-//todo
+Simple : as a user you don't wan't somebody (or a spyware taking screenshots) be able to look (and know) what is your password on a website. That's why all browsers use the well known dots instead of letting you look what you are typing. But there is a problem to type in blind mode : how many time did you misstyped a password, then validated it with an http request wait for the result and finally get busted by an annoying server message? 
 
-Deter solution
---------------
-How to provide an easy way for a user to know if his password is well typed or not ? The idea is to use colors or identicons to let him get a decent idea about what he typed "blind" mode. This is not 100% trustable but if he got the habit to get a "blue" login box, if that box became red he knows he has misspelled.
+The solution
+------------
 
-The idea itself is not new, a lot of other example do the same thing, but this one got the particularity to be full client side (full javascript). So there is no latency and more of that 0 communication cost (no http request).
+1. Easy, just make password field visible !
 
-The JQuery plugin himself is only a "bridge" (= an easy way) to call and use some identicon plugin. The most important is how to integrate it in a real use case (see the demo part).
+- Thanks but no thanks. There is only one thing i hate more than misstying : when somebody is able to steal my password and my data.
+
+2. Some big company with a stupid apple logo got a nice idea : the character you typed is only visible for few sec, then transform to a dot like in a regular password field ! They should be right about that and it's handy for the user !
+
+- Each time i saw that, i know why i don't and won't never buy one of their phone. Seriously what is the difference with the first solution? Ok i admit is a bit harder for somebody close from you to see and memorize the password. But what if he is not dumb as fuck and can remember your 8 letter password? Therefore, what if a spyware just take a screenshot from your password field before the char is transformer to dot? The answer is simple : you are fucked.
+
+3. Oh i saw something not too stupid where a remote server generate an image based on your password to give you a nice idea if you misstyped or not.
+
+- Yes i thing it's not too bad too. But each time i saw that kind of system i'm a bit sad : you have to do one http request to send your password to the server, ask him to generate a picture (hard cpu cost), then wait for his answer with another http request and that each time you hit a character. Well i know that client/server communication are pretty fast nowadays, but i still think that's pretty stupid. Most of them are based directly on Gravatar, so if the gravatar server got latencies for some reason, your own website will look broken or slow. The problem is client sided only, why should you solve it with a remote solution?
+
+The Deter approach
+------------------
+
+What is we could provide to the user a visual way to know if the password is the good one, without expose him to spys and with a client sided solution? I think all we need is the user himself and a touch of css / canvas. 
+
+Let's give a color to the user, like a tone of blue, each time he writte his password on our website. If one day he see a tone of red, he can be sure that he misstyped. No need to go further, no server calls required : he can correct himself before the form submission. In fact, all we need is to be able to convert a string into a determinist hexadecimal 6 digit number. But this is pure mathematics and javascript is nice for that: let's convert locally our string to md5 and keep only 6 char, we get our color !
+
+Furthermore, canvas modern browser are now able to draw pictures. With the good drawing library and our md5 determinist string, it's easy to convert it to an identicon canvas. As we are also able to get a determinist color, we can even provide a nice old browser fallback.
+
+This Deter JQuery plugin is focused around to do all that things in one unique easy way.
 
 Is it bulletproof?
 ------------------
-//todo
+Yes... and no :D !
+
+1. The whole system is based on a finite number. So there is a finite number of solution. If you already worked with hash you should know that different string could get the same result. In other words, deter can provide the same color or identicon with two different strings. But don't be affraid, the entropy to get the same color between your misstyped password and the real one is almost the same that the number of stars in the sky.
+
+2. The real problem is the human eyes and brain. Maybe you will remember that your password produced a blue color, but what tone of blue? If you misstyped and got a <span color="blue">deep blue</span> instead of a marine blue, will you able to understand you misstyped? But the good news is : at least if it is red, you know your are wrong ^^ !
 
 (Live) Demo
 -----------
