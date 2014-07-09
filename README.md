@@ -90,7 +90,7 @@ selectorDescendant: null
 
 
 --------------
-
+------------
 
 *In addition, there is 2 handy utilities packaged into jquery $ method.*
 
@@ -157,7 +157,9 @@ console.log(color);
 ```
 
 You can also use `$.strToColor` to get the full sequence of result.
+
 **NB:** This sequence is not a result char by char so a spy can't detect what the user as typed !
+
 *ex: azerty will produce a color for 'a', then for 'az', then for 'aze', etc. until color for 'azerty'.*
 
 ```javascript
@@ -207,8 +209,6 @@ console.log(color);
 */
 ```
 
-//todo
-
 Licence
 -------
 
@@ -227,4 +227,5 @@ The plugin `JQuery.MD5` by Gabriele Romanato is used to calculate md5 hashes.
 
 What's next ?
 -------------
+
 The plugin is ready to handle sequence, but the gateway plugin used to generated canevas is not made to provide multiple kind of results. I need to improve that part to be able to "plug" multiple solution and not only the `identicon5` one. With the sequence result, i would like to generate a mini graph so the user will be able to see more clearly if the password is misstyped or not than with identicons.
