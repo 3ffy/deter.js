@@ -29,7 +29,64 @@ Working (live) example
 Usage
 -----
 
-**First of all, there is 2 handy utilities packaged into jquery $ method.**
+**Deter is made to be easy to use**
+
+### Normal usage
+
+Just call it as a normal JQuery plugin and use the callback to do something when the user will fire the keyup event.
+
+```javascript
+/**
+ * Modify background color of a sibling box.
+ */
+$('#testPassword2').deter(function(deter, value){
+    //if no value, come back to the initial state (transparent background)
+    $(this).siblings('.colorBox')
+        .css('background-color', (value == '')? '' : deter.hex);
+});
+```
+
+  Note that `deter` is the result of the $.strToColor function (see below) and `value` the value of the input when the event (keyup) occured.
+  Therefore, the callback is called on the this context, so you can use $(this) to refer to the element who fire the event.
+
+### Use options to customize the plugin
+
+```javascript
+    //pass an object as second param to customise the behaviour.
+    $('#testPassword2').deter(function(deter, value){
+        //if no value, come back to the initial state (transparent background)
+        $(this).siblings('.colorBox')
+            .css('background-color', (value == '')? '' : deter.hex);
+    }, {
+        events: 'click'
+    });
+```
+
+Options description (and default values) :
+
+```javascript
+//true if you want the result as a sequence (see below)
+sequence: false,
+
+//the opacity of the rgba value in results
+opacity: 1,
+
+//the events whose will fire the plugin. You can use multiple events separing them by a space
+events: 'keyup',
+
+//as all JQuery events you can use delegated events (attach the fire event to another element rather than $(this)).
+//it's really usefull when your element is created dynamically and can't be found by the selector at the initialization.
+selectorDelegated: null,
+
+//if you used selectorDelegated, you have to precise how to get back your element corresponding to $(this) in the callback. (Can be identical to the selector used during the initialization of the plugin).
+selectorDescendant: null
+```
+
+  **Please get a look into the demo to find more advanced examples.**
+
+--------------
+
+**In addition, there is 2 handy utilities packaged into jquery $ method.**
 
 ### $.hexToRgb
 
