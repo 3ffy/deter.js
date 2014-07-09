@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Deter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UX Experiment : get a client size determinist color or identicon to improve login form experience.">
+    <meta name="author" content="3ffy - Aurélien GY">
+
+	<!-- The styles -->
+	<link href="demo.css" rel="stylesheet">
+
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="../asset/jquery.md5.min.js"></script>
+	<script src="../asset/jquery.identicon5.packed.js"></script>
+	<script src="../deter.js"></script>
+
+	<script>
+		$(document).ready(function(){
+	
+			/**
+			 * Modify current input shape + use options
+			 */		
+			$('#testPassword1').deter(function(deter, value){
+				if(value == ''){
+					$(this)
+						.css('-webkit-box-shadow', '')
+						.css('-moz-box-shadow', '')
+						.css('box-shadow', '')
+						.css('border-color', '');
+				}else{
+					var boxShadowValue = 'inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px ' + deter.rgba;
+					$(this)
+						.css('-webkit-box-shadow', boxShadowValue)
+						.css('-moz-box-shadow', boxShadowValue)
+						.css('box-shadow', boxShadowValue)
+						.css('border-color', deter.hex);
+				}	
+			},{
+				opacity: 0.8
+			});
+
+			/**
+			 * Modify background color of a sibling box.
+			 */
+			$('#testPassword2').deter(function(deter, value){
+				//if no value, come back to the initial state (transparent background)
+				$(this).siblings('.colorBox')
+					.css('background-color', (value == '')? '' : deter.hex);
+			});
+
+			/**
+			 * Modify sibling box background color from a span and not an input.
+			 */
+			$('#testSpan1').deter(function(deter, value){
+				//if no value, come back to the initial state (transparent background)
+				$(this).siblings('.colorBox')
+					.css('background-color', (value == '')? '' : deter.hex);
+			},{
+				events: 'click'
+			},
+				function(){
+			 		return $(this).text();
+				}
+			);
+
+			//add utilites button for the demo
+			$('#span1 .buttons a.clear').click(function(e){
+				e.preventDefault();
+				$('#testSpan1').text('');
+			});
+
+			$('#span1 .buttons a.fill').click(function(e){
+				e.preventDefault();
+				//generate a random string
+			    var text = '';
+			    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+			    var i;
+			    var max = Math.floor(Math.random() * 20) + 1;
+			    for(i = 0; i < max; i++){
+			        text += possible.charAt(Math.floor(Math.random() * possible.length));
+			    }
+				$('#testSpan1').text(text);
+			});	
+
+
+			/**
+			 * Modyfy body background color + use delegated selector + chain other jquery events
+			 */
+			$('#testPassword3')
+				.deter(function(deter, value){
+					//if no value, come back to the initial state (transparent background)
+					$('body')
+						.css('background-color', (value == '')? '' : deter.hex);
+				},{
+					events: 'keyup focus',
+					selectorDelegated: '#demo',
+					selectorDescendant: '#testPassword3'
+				})
+				.blur(function(e){
+					//desactivate deter on focus lost
+					$('body')
+						.css('background-color', '');
+				});
+			
+			/**
+			 * Generate an identicon into sibling element.
+			 */
+			$('#testPassword4').deter(function(deter, value){
+				var $elem = $(this).siblings('.identicon');
+				//if no value, come back to the initial state (destroy canevas)
+				if(value == ''){
+					$elem
+						.text('');
+				}else{
+					$elem
+						.identicon(
+							deter.md5,
+							deter.hex,
+							{
+								rotate:true,
+								size:100
+							});
+				}
+			});
+
+			/**
+			 * Generate an identicon into sibling element, only on change.
+			 */
+			$('#testPassword5').deter(function(deter, value){
+				var $elem = $(this).siblings('.identicon');
+				//if no value, come back to the initial state (destroy canevas)
+				if(value == ''){
+					$elem
+						.text('');
+				}else{
+					$elem
+						.identicon(
+							deter.md5,
+							deter.hex,
+							{
+								rotate:true,
+								size:100
+							});
+				}
+			}, {
+				events:'change'
+			});
+
+			/**
+			 * A more realistic identicon password case + fancy effects
+			 */
+			$('#testPassword6')
+				.deter(function(deter, value){
+					var $elem = $(this).siblings('.identicon');
+					//if no value, come back to the initial state (destroy canevas)
+					if(value == ''){
+						$elem
+							.text('');
+					}else{
+						$elem
+							.identicon(
+								deter.md5,
+								deter.hex,
+								{
+									rotate:true,
+									size:38
+								});
+					}
+				})
+				.focus(function(e){
+					//add a fancy box shadow effect on the canvas if the input is focused
+					$('#password6').addClass('focused');
+				})
+				.blur(function(e){
+					$('#password6').removeClass('focused');
+				});
+		});
+	</script>
+
+  </head>
+
+  <body>
+	
+	<section id="demo">
+		<h2>Deter plugin overview</h2>
+		<p>
+			<label for="testPassword1">Change password input aspect (color of the box-shadow): </label>
+			<input id="testPassword1" type="password"></input>
+		</p>
+		<p>
+			<label for="testPassword2">Change background of a sibling box (with css3 transition) : </label>
+			<input id="testPassword2" type="password"></input>
+			<span class="colorBox"></span>
+		</p>
+		<p id="span1">
+			<label for="testSpan1">Use on something different than an input (span content)</label>
+			<span id="testSpan1">Click on me !</span>
+			<span class="colorBox"></span>
+			<span class="buttons">
+				<a class="clear" href="#" title="clear the span content">clear</a>
+				<a class="fill" href="#" title="fill the span with new content">fill with a random string</a>
+			</span>
+		</p>
+		<p>					
+			<label for="testPassword3">Change background of the body (only if the password input got the focus) : </label>
+			<input id="testPassword3" type="password"></input>
+		</p>
+		<p>					
+			<label for="testPassword4">Generate an identicon (or a colored box on old browsers) : </label>
+			<input id="testPassword4" type="password"></input>
+			<span class="identicon"></span>
+		</p>
+		<p>					
+			<label for="testPassword5">Bind only on the "change" event : </label>
+			<input id="testPassword5" type="password"></input>
+			<span class="identicon"></span>
+		</p>
+		<h2>A real use case</h2>
+		<p id="password6">
+
+			<label for="testPassword6">Enter your password:</label>
+			<input id="testPassword6" type="password" placeholder="password"></input>
+			<span class="identicon"></span>
+		</p>
+	</section>
+	
+  </body>
+</html>
