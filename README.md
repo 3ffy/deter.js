@@ -19,14 +19,14 @@ Is it bulletproof?
 ------------------
 //todo
 
-Working (live) example
-----------------------
+(Live) Demo
+-----------
 
 <http://codepen.io/3ffy/pen/HxEet>
 
 [![A screenshot of Deter in action](https://raw.githubusercontent.com/3ffy/deter/master/demo/screenshot.jpg)](http://codepen.io/3ffy/pen/HxEet)
 
-*(or get a look into the `demo` folder to find the static version)*
+*(or get a look into the `demo/` folder to find the static version)*
 
 Usage
 -----
@@ -48,20 +48,20 @@ $('#testPassword2').deter(function(deter, value){
 });
 ```
 
-  Note that `deter` is the result of the $.strToColor function (see below) and `value` the value of the input when the event (keyup) occured.
-  Therefore, the callback is called on the this context, so you can use $(this) to refer to the element who fire the event.
+    Note that `deter` is the result of the `$.strToColor` function (see below) and `value` the value of the input when the event (keyup) occured.
+    Therefore, the callback is called on the this context, so you can use `$(this)` to refer to the element who fire the event.
 
 ### Use options to customize the plugin
 
 ```javascript
-    //pass an object as second param to customise the behaviour.
-    $('#testPassword2').deter(function(deter, value){
-        //if no value, come back to the initial state (transparent background)
-        $(this).siblings('.colorBox')
-            .css('background-color', (value == '')? '' : deter.hex);
-    }, {
-        events: 'click'
-    });
+//pass an object as second param to customise the behaviour.
+$('#testPassword2').deter(function(deter, value){
+    //if no value, come back to the initial state (transparent background)
+    $(this).siblings('.colorBox')
+        .css('background-color', (value == '')? '' : deter.hex);
+}, {
+    events: 'click'
+});
 ```
 
 Options description (and default values) :
@@ -84,9 +84,11 @@ selectorDelegated: null,
 selectorDescendant: null
 ```
 
-  **Please get a look into the demo to find more advanced examples.**
+  **Please get a look into the [![Goto: Readme demo part](demo)](https://github.com/3ffy/deter#live-demo) to find more advanced examples.**
+
 
 --------------
+
 
 **In addition, there is 2 handy utilities packaged into jquery $ method.**
 
