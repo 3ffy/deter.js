@@ -26,6 +26,8 @@ Working (live) example
 
 [![A screenshot of Deter in action](https://raw.githubusercontent.com/3ffy/deter/master/demo/screenshot.jpg)](http://codepen.io/3ffy/pen/HxEet)
 
+*(or get a look into the `demo` folder to find the static version)*
+
 Usage
 -----
 
