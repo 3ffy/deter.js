@@ -31,7 +31,7 @@ Is it bulletproof?
 Usage
 -----
 
-**Deter is made to be easy to use**
+*Deter is made to be easy to use !*
 
 ### Normal usage
 
@@ -66,7 +66,7 @@ $('#testPassword2').deter(function(deter, value){
 });
 ```
 
-**Options description (and default values):**
+*Options description (and default values):*
 
 ```javascript
 //true if you want the result as a sequence (see below)
