@@ -240,11 +240,11 @@ The library is under the Open Source Licence BSD3 as defined to the LICENCE file
 The plugin `JQuery.Identicon5` by Francis Shanahan (http://francisshanahan.com/) is used to render identicons.
 @see: <http://archive.plugins.jquery.com/project/identicon5>. 
 Deter plugin only provide a plugin to use it,
-(it is not a part of it, and you can easily modify Deter to use another identicon generator librairy.)
+(it is not a part of it, and you can easily modify Deter to use another client sided identicon generator library.)
  
 The plugin `JQuery.MD5` by Gabriele Romanato is used to calculate md5 hashes.
 @see: <http://blog.gabrieleromanato.com>. 
-(Deter plugin only use it but it's not a part of it, you can easily replace it by another md5 generator librairy.)
+(Deter plugin only use it but it's not a part of it, you can easily replace it by another md5 generator library.)
 
 What's next ?
 -------------
