@@ -214,7 +214,7 @@ Licence
 
 The library is under the Open Source Licence BSD3 as defined to the LICENCE file provided. In a nutshell this licence is one of the most permissive : you can use the library in your commercial project, modify it and redistributing it. The only constraint is to respect the author patent (one line comment is enought providing a link to the library repository and its licence file. Basically, you have to let the comment included inside the library).
 
-* Exceptions : * 
+**Exceptions:** 
 
 The plugin `JQuery.Identicon5` by Francis Shanahan (http://francisshanahan.com/) is used to render identicons.
 @see: <http://archive.plugins.jquery.com/project/identicon5>. 
