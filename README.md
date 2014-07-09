@@ -12,9 +12,9 @@ The JQuery plugin himself is only a "bridge" (= an easy way) to call and use som
 Working (live) example
 ----------------------
 
-[![A screenshot of Deter in action](https://raw.githubusercontent.com/3ffy/deter/master/demo/screenshot.jpg)](http://codepen.io/3ffy/pen/HxEet)
-
 <http://codepen.io/3ffy/pen/HxEet>
+
+[![A screenshot of Deter in action](https://raw.githubusercontent.com/3ffy/deter/master/demo/screenshot.jpg)](http://codepen.io/3ffy/pen/HxEet)
 
 Usage
 -----
