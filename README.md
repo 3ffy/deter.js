@@ -48,8 +48,8 @@ $('#testPassword2').deter(function(deter, value){
 });
 ```
 
-    Note that `deter` is the result of the `$.strToColor` function (see below) and `value` the value of the input when the event (keyup) occured.
-    Therefore, the callback is called on the this context, so you can use `$(this)` to refer to the element who fire the event.
+> Note that `deter` is the result of the `$.strToColor` function (see below) and `value` the value of the input when the event (keyup) occured.
+> Therefore, the callback is called on the this context, so you can use `$(this)` to refer to the element who fire the event.
 
 ### Use options to customize the plugin
 
