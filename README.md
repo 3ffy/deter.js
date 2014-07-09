@@ -1,5 +1,5 @@
-Deter
-=====
+Deter.js
+========
 
 UX Experiment : provide a client sided password graphical fingerprint.
 
@@ -22,8 +22,8 @@ The solution
 
 - Yes i thing it's not too bad too. But each time i saw that kind of system i'm a bit sad : you have to do one http request to send your password to the server, ask him to generate a picture (hard cpu cost), then wait for his answer with another http request and that each time you hit a character. Well i know that client/server communication are pretty fast nowadays, but i still think that's pretty stupid. Most of them are based directly on Gravatar, so if the gravatar server got latencies for some reason, your own website will look broken or slow. The problem is client sided only, why should you solve it with a remote solution?
 
-The Deter approach
-------------------
+The Deter.js approach
+---------------------
 
 What is we could provide to the user a visual way to know if the password is the good one, without expose him to spys and with a client sided solution? I think all we need is the user himself and a touch of css / canvas. 
 
