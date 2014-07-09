@@ -31,7 +31,7 @@ Usage
 
 **First of all, there is 2 handy utilities packaged into jquery $ method.**
 
-### hexToRgb
+### $.hexToRgb
 
 ```javascript
 /**
@@ -52,7 +52,7 @@ console.log(rgb);
  */
 ```
 
-### hexToRgb
+### $.strToColor
 
 ```javascript
 /**
@@ -147,7 +147,7 @@ console.log(color);
 */
 ```
 
-2. //todo
+//todo
 
 Licence
 -------
