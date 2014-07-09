@@ -39,7 +39,7 @@ Yes... and no :D !
 
 1. The whole system is based on a finite number. So there is a finite number of solution. If you already worked with hash you should know that different string could get the same result. In other words, deter can provide the same color or identicon with two different strings. But don't be affraid, the entropy to get the same color between your misstyped password and the real one is almost the same that the number of stars in the sky.
 
-2. The real problem is the human eyes and brain. Maybe you will remember that your password produced a blue color, but what tone of blue? If you misstyped and got a <em style="color:blue">deep blue</em> instead of a marine blue, will you able to understand you misstyped? But the good news is : at least if it is red, you know your are wrong ^^ !
+2. The real problem is the human eyes and brain. Maybe you will remember that your password produced a blue color, but what tone of blue? If you misstyped and got a `deep blue` instead of a `marine blue`, will you able to understand you misstyped? But the good news is : at least if it is red, you know your are wrong ^^ !
 
 (Live) Demo
 -----------
