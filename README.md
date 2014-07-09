@@ -233,7 +233,7 @@ console.log(color);
 Licence
 -------
 
-The library is under the Open Source Licence **BSD 3-Clause** as defined to the LICENCE file provided. In a nutshell this licence is one of the most permissive : you can use the library in your commercial project, modify it and redistributing it :metal:. The only constraint is to respect the author patent (one line comment is enought providing a link to the library repository and its licence file. Basically, you have to let the comment included inside the library).
+The library is under the Open Source Licence **BSD 3-Clause** as defined to the LICENCE file provided. In a nutshell this licence is one of the most permissive : you can use the library in your commercial project, modify it and redistributing it. The only constraint is to respect the author patent (one line comment is enought providing a link to the library repository and its licence file. Basically, you have to let the comment included inside the library).
 
 **Exceptions:** 
 
@@ -251,4 +251,4 @@ What's next ?
 
 The plugin is ready to handle sequence, but the gateway plugin used to generated canevas is not made to provide multiple kind of results. I need to improve that part to be able to "plug" multiple solution and not only the `identicon5` one. With the sequence result, i would like to generate a mini graph so the user will be able to see more clearly if the password is misstyped or not than with identicons.
 
-> This plugin is made with love, please give it some love back :heart:!
+> :heart: This plugin is made with love, please give it some love back !
