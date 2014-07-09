@@ -86,13 +86,13 @@ selectorDelegated: null,
 selectorDescendant: null
 ```
 
-  **Please get a look into the [demo](https://github.com/3ffy/deter#live-demo) to find more advanced examples.**
+**Please get a look into the [demo](https://github.com/3ffy/deter#live-demo) to find more advanced examples.**
 
 
 --------------
 
 
-**In addition, there is 2 handy utilities packaged into jquery $ method.**
+*In addition, there is 2 handy utilities packaged into jquery $ method.*
 
 ### $.hexToRgb
 
@@ -156,14 +156,11 @@ console.log(color);
 */
 ```
 
-```javascript
-/**
- * You can also use $.strToColor to get the full sequence of result.
- *
- * NB : This sequence is not a result char by char so a spy can't detect what the user as typed !
- * ex : azerty will produce a color for 'a', then for 'az', then for 'aze', etc. until color for 'azerty'.
- */
+You can also use `$.strToColor` to get the full sequence of result.
+**NB:** This sequence is not a result char by char so a spy can't detect what the user as typed !
+*ex: azerty will produce a color for 'a', then for 'az', then for 'aze', etc. until color for 'azerty'.*
 
+```javascript
 //example:
 var val = 'azerty';
 var color = $.strToColor(val, 1, true);
