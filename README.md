@@ -34,118 +34,117 @@ First of all, there is 2 handy utilities packaged into jquery $ method.
 * hexToRgb *
 
 ```javascript
-    /**
-     * Convert hexadecimal color to RGB color.
-     *
-     * @param {string} hex The hexadecimal color with or without #, normal (#ddeeff) or combined (#def) format.
-     * @return {array} The results array on success, null on failure.
-     */
-    
-    //example:
-    var hex = 'ddeeff';
-    var rgb = $.hexToRgb(hex);
-    console.log(rgb);
+/**
+ * Convert hexadecimal color to RGB color.
+ *
+ * @param {string} hex The hexadecimal color with or without #, normal (#ddeeff) or combined (#def) format.
+ * @return {array} The results array on success, null on failure.
+ */
 
-    //result:    
-    /*
-        Object {r: 221, g: 238, b: 255} 
-     */
+//example:
+var hex = 'ddeeff';
+var rgb = $.hexToRgb(hex);
+console.log(rgb);
+
+//result:    
+/*
+    Object {r: 221, g: 238, b: 255} 
+ */
 ```
 
 * hexToRgb *
 
 ```javascript
-    /**
-     * Return determinist color from a dynamic text. (one string = one color, always the same one).
-     *
-     * @param {string} val      The value to convert.
-     * @param {float}  opacity  [optional] (default = 1) The opacity of the color wished. Only relevant with rgba results.
-     * @param {bool}   sequence [optional] (default = false) True if you want to get a full sequence of all the md5 letter by letter, false for just the final result.
-     * @return {mixed} sequence = false : Json object with the calculated determinist values : {md5, hexRaw, hex, rgbRaw, rgb, rgbaRaw, rgba}, sequence = true : an array of the json objects sequence.
-     */
-    
-    //example:
-    var val = 'a string to convert into a determinist color';
-    var color = $.strToColor(val);
-    console.log(color);
+/**
+ * Return determinist color from a dynamic text. (one string = one color, always the same one).
+ *
+ * @param {string} val      The value to convert.
+ * @param {float}  opacity  [optional] (default = 1) The opacity of the color wished. Only relevant with rgba results.
+ * @param {bool}   sequence [optional] (default = false) True if you want to get a full sequence of all the md5 letter by letter, false for just the final result.
+ * @return {mixed} sequence = false : Json object with the calculated determinist values : {md5, hexRaw, hex, rgbRaw, rgb, rgbaRaw, rgba}, sequence = true : an array of the json objects sequence.
+ */
 
-    //result:    
-    /*
-        Object {
-            hex: "#a20235"
-            hexRaw: "a20235"
-            md5: "a20235aa53b5b3a9759ac25a7d1d7ed8"
-            rgb: "rgb(162, 2, 53)"
-            rgbRaw: Object {
-                a: 1
-                b: 53
-                g: 2
-                r: 162
-            }
-            rgba: "rgba(162, 2, 53, 1)"
-            rgbaRaw: Object {
-                a: 1
-                b: 53
-                g: 2
-                r: 162
-            }
+//example:
+var val = 'a string to convert into a determinist color';
+var color = $.strToColor(val);
+console.log(color);
+
+//result:    
+/*
+    Object {
+        hex: "#a20235"
+        hexRaw: "a20235"
+        md5: "a20235aa53b5b3a9759ac25a7d1d7ed8"
+        rgb: "rgb(162, 2, 53)"
+        rgbRaw: Object {
+            a: 1
+            b: 53
+            g: 2
+            r: 162
         }
-    */
+        rgba: "rgba(162, 2, 53, 1)"
+        rgbaRaw: Object {
+            a: 1
+            b: 53
+            g: 2
+            r: 162
+        }
+    }
+*/
 ```
 
 ```javascript
+/**
+ * You can also use $.strToColor to get the full sequence of result.
+ *
+ * NB : This sequence is not a result char by char so a spy can't detect what the user as typed !
+ * ex : azerty will produce a color for 'a', then for 'az', then for 'aze', etc. until color for 'azerty'.
+ */
 
-    /**
-     * You can also use $.strToColor to get the full sequence of result.
-     *
-     * NB : This sequence is not a result char by char so a spy can't detect what the user as typed !
-     * ex : azerty will produce a color for 'a', then for 'az', then for 'aze', etc. until color for 'azerty'.
-     */
-    
-    //example:
-    var val = 'azerty';
-    var color = $.strToColor(val, 1, true);
-    console.log(color);
+//example:
+var val = 'azerty';
+var color = $.strToColor(val, 1, true);
+console.log(color);
 
-    //result:    
-    /*
-        [
-            //a
-            0: Object {
-                hex: "#0cc175"
-                hexRaw: "0cc175"
-                md5: "0cc175b9c0f1b6a831c399e269772661"
-                rgb: "rgb(12, 193, 117)"
-                rgbRaw: Object
-                rgba: "rgba(12, 193, 117, 1)"
-                rgbaRaw: Object
-            }
-            //az
-            1: Object {
-                hex: "#cc8c0a"
-                hexRaw: "cc8c0a"
-                md5: "cc8c0a97c2dfcd73caff160b65aa39e2"
-                rgb: "rgb(204, 140, 10)"
-                rgbRaw: Object
-                rgba: "rgba(204, 140, 10, 1)"
-                rgbaRaw: Object
-            }
-            
-            //etc.
+//result:    
+/*
+    [
+        //a
+        0: Object {
+            hex: "#0cc175"
+            hexRaw: "0cc175"
+            md5: "0cc175b9c0f1b6a831c399e269772661"
+            rgb: "rgb(12, 193, 117)"
+            rgbRaw: Object
+            rgba: "rgba(12, 193, 117, 1)"
+            rgbaRaw: Object
+        }
+        //az
+        1: Object {
+            hex: "#cc8c0a"
+            hexRaw: "cc8c0a"
+            md5: "cc8c0a97c2dfcd73caff160b65aa39e2"
+            rgb: "rgb(204, 140, 10)"
+            rgbRaw: Object
+            rgba: "rgba(204, 140, 10, 1)"
+            rgbaRaw: Object
+        }
+        
+        //etc.
 
-            //azerty
-            5: Object {
-                hex: "#ab4f63"
-                hexRaw: "ab4f63"
-                md5: "ab4f63f9ac65152575886860dde480a1"
-                rgb: "rgb(171, 79, 99)"
-                rgbRaw: Object
-                rgba: "rgba(171, 79, 99, 1)"
-                rgbaRaw: Object
-            }
-            length: 6
-        ]
-    */
+        //azerty
+        5: Object {
+            hex: "#ab4f63"
+            hexRaw: "ab4f63"
+            md5: "ab4f63f9ac65152575886860dde480a1"
+            rgb: "rgb(171, 79, 99)"
+            rgbRaw: Object
+            rgba: "rgba(171, 79, 99, 1)"
+            rgbaRaw: Object
+        }
+        length: 6
+    ]
+*/
 ```
 
 //todo
