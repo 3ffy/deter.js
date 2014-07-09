@@ -11,12 +11,13 @@ The solution
 ------------
 
 1. **Easy, just make password field visible !**
-  - Thanks but no thanks. There is only one thing i hate more than misstying : when somebody is able to steal my password and my data.
-2. **Some big company with a stupid apple logo got a nice idea : the character you typed is only visible for few sec, then transform to a dot like in a regular password field ! They should be right about that and it's handy for the user !**
+  Thanks but no thanks. There is only one thing i hate more than misstying : when somebody is able to steal my password and my data.
 
-- Each time i saw that, i know why i don't and won't never buy one of their phone. Seriously what is the difference with the first solution? Ok i admit is a bit harder for somebody close from you to see and memorize the password. But what if he is not dumb as fuck and can remember your 8 letter password? Therefore, what if a spyware just take a screenshot from your password field before the char is transformer to dot? The answer is simple : you are fucked.
+2. **Some big company with a stupid apple logo got a nice idea : the character you typed is only visible for few sec, then transform to a dot like in a regular password field ! They should be right about that and it's handy for the user !**
+  Each time i saw that, i know why i don't and won't never buy one of their phone. Seriously what is the difference with the first solution? Ok i admit is a bit harder for somebody close from you to see and memorize the password. But what if he is not dumb as fuck and can remember your 8 letter password? Therefore, what if a spyware just take a screenshot from your password field before the char is transformer to dot? The answer is simple : you are fucked.
+  
 3. **Oh i saw something not too stupid where a remote server generate an image based on your password to give you a nice idea if you misstyped or not.**
-    - Yes i thing it's not too bad too. But each time i saw that kind of system i'm a bit sad : you have to do one http request to send your password to the server, ask him to generate a picture (hard cpu cost), then wait for his answer with another http request and that each time you hit a character. Well i know that client/server communication are pretty fast nowadays, but i still think that's pretty stupid. Most of them are based directly on Gravatar, so if the gravatar server got latencies for some reason, your own website will look broken or slow. The problem is client sided only, why should you solve it with a remote solution?
+  Yes i thing it's not too bad too. But each time i saw that kind of system i'm a bit sad : you have to do one http request to send your password to the server, ask him to generate a picture (hard cpu cost), then wait for his answer with another http request and that each time you hit a character. Well i know that client/server communication are pretty fast nowadays, but i still think that's pretty stupid. Most of them are based directly on Gravatar, so if the gravatar server got latencies for some reason, your own website will look broken or slow. The problem is client sided only, why should you solve it with a remote solution?
 
 The Deter.js approach
 ---------------------
