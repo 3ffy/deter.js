@@ -29,9 +29,9 @@ Working (live) example
 Usage
 -----
 
-1. First of all, there is 2 handy utilities packaged into jquery $ method. 
+**First of all, there is 2 handy utilities packaged into jquery $ method.**
 
-  * *hexToRgb*
+### hexToRgb
 
 ```javascript
 /**
@@ -52,7 +52,7 @@ console.log(rgb);
  */
 ```
 
-  * *hexToRgb*
+### hexToRgb
 
 ```javascript
 /**
