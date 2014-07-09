@@ -106,10 +106,11 @@ selectorDescendant: null
 ```
 
 > Please get a look into the [demo](https://github.com/3ffy/deter#live-demo) to find more advanced examples.
-
-
+  
+  
 --------------
-
+  
+  
 *In addition, there is 2 handy utilities packaged into JQuery `$` method.*
 
 ### $.hexToRgb
