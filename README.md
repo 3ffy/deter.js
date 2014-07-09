@@ -86,7 +86,7 @@ selectorDelegated: null,
 selectorDescendant: null
 ```
 
-**Please get a look into the [demo](https://github.com/3ffy/deter#live-demo) to find more advanced examples.**
+> Please get a look into the [demo](https://github.com/3ffy/deter#live-demo) to find more advanced examples.
 
 
 --------------
