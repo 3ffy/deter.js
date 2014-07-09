@@ -251,5 +251,4 @@ What's next ?
 
 The plugin is ready to handle sequence, but the gateway plugin used to generated canevas is not made to provide multiple kind of results. I need to improve that part to be able to "plug" multiple solution and not only the `identicon5` one. With the sequence result, i would like to generate a mini graph so the user will be able to see more clearly if the password is misstyped or not than with identicons.
 
-> :heart: This plugin is made with love, please give it some love back !
-> - 3ffy
+> :heart: This plugin is made with love, please give it some love back ! - 3ffy
