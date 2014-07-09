@@ -60,11 +60,13 @@ $('#testPassword2').deter(function(deter, value){
     $(this).siblings('.colorBox')
         .css('background-color', (value == '')? '' : deter.hex);
 }, {
-    events: 'click'
+    //options
+    events: 'click',
+    opacity: 0.5
 });
 ```
 
-Options description (and default values) :
+**Options description (and default values):**
 
 ```javascript
 //true if you want the result as a sequence (see below)
@@ -84,7 +86,7 @@ selectorDelegated: null,
 selectorDescendant: null
 ```
 
-  **Please get a look into the [![Goto: Readme demo part](demo)](https://github.com/3ffy/deter#live-demo) to find more advanced examples.**
+  **Please get a look into the [demo](https://github.com/3ffy/deter#live-demo) to find more advanced examples.**
 
 
 --------------
