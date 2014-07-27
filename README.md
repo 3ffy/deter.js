@@ -3,7 +3,7 @@ Deter.js
 
 UX Experiment : provide a client sided password graphical fingerprint.
 
-Deter main aim is to provide to the user a way to determine if he misspelled his password or not, before make a request to the server, and without reveal his password to a pirate.
+Deter main aim is to provide to the user a way to determine if he misspelled his password or not, before make a request to the server, and without reveal his password to an eventual pirate.
 
 (Live) Demo
 -----------
@@ -50,6 +50,14 @@ API
 ---
 
 ```javascript
+/**
+ * Deter plugin.
+ * Call the $.strToColor each time the condition given in the options param is filled.
+ *
+ * @param {mixed}  mode    [optional] A string corresponding to the behaviour wished or a callback function (default = 'box-identicon').
+ * @param {object} options [optional] Json object with the options of that plugin call.
+ * @return {object} The jquery object you used to call the plugin.
+ */
 $.fn.deter = function(mode, options);
 ```
 #### mode
@@ -65,6 +73,37 @@ $.fn.deter = function(mode, options);
 
 
 #### options
+
+| Name                 | Type               | Default   | Description | Info |
+|----------------------|--------------------|-----------|-------------|------|
+| sequence             | bool               | false     | The type of deter object to serve to the callback | Sequence = calculate all the colors of string offset. You will never need it instead you try to generate a graph or something similar (+ the cpu cost is bigger relative to the number of calculation) |
+| opacity              | float              | 1         | If the deter mode is based on rgba, it will use the opacity value into the result ( = alpha) | Note that the `border` mode will use the opacity for the box-shadow and ignore it for the border color |
+| canevasSize          | mixed (int/string) | 'auto'    | | |
+| addDeterExtraMarkups | bool               | true      | | |
+| getContent           | function           | null      | | |
+| events               | string             | 'keyup'   | | |
+| selectorDelegated    | string             | null      | | |
+| selectorDescendant   | string             | null      | | |
+| addClass             | string             | ''        | | |
+| textColorMode        | string             | 'default' | | |
+| target               | string             | null      | | |
+
+> Note that if you use the custom mode, the settings are passed as a callback argument, so you can add your own values into settings and use it later inside the callback.
+
+        var settings = $.extend({
+            sequence: false,
+            opacity: 1,
+            canevasSize: 'auto',
+            addDeterExtraMarkups: true,
+            getContent: null,
+            events: 'keyup',
+            selectorDelegated: null,
+            selectorDescendant: null,
+            addClass: '',
+            textColorMode: 'default', //values are 'default', 'monochrome', 'complementary'
+            target: null
+        }, options);
+
 
 Advanced Usage
 --------------
