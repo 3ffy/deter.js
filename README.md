@@ -21,7 +21,7 @@ Usage (predefined behaviours)
 
 *Deter is made to be easy to use !*
 
-```javascript
+```html
 <html>
     <head>
         <script src="../deter.packaged.min.js"></script> 
@@ -60,7 +60,9 @@ $.fn.deter = function(mode, options);
 | box-color                              | string   | Modify the background color of a sibling box                                               |
 | background                             | string   | Modify the background of the element (default) or another one (ex: the body of the page)   |
 | border                                 | string   | Modify the borders color and the box-shadow of the element (default) or another one        |
-| custom                                 | function | Use a custom callback to create your own behaviour (see the Advanced Usage section bellow) |
+| custom                                 | function | Use a custom callback to create your own behaviour (see the  [Advanced Usage](#advanced-usage) section bellow) |
+
+
 
 #### options
 
