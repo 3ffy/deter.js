@@ -26,48 +26,81 @@
 			/**
 			 * Modify current input shape + use options
 			 */		
-			$('#testPassword1').deter(function(deter, value){
-				if(value == ''){
-					$(this)
-						.css('-webkit-box-shadow', '')
-						.css('-moz-box-shadow', '')
-						.css('box-shadow', '')
-						.css('border-color', '');
-				}else{
-					var boxShadowValue = 'inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px ' + deter.rgba;
-					$(this)
-						.css('-webkit-box-shadow', boxShadowValue)
-						.css('-moz-box-shadow', boxShadowValue)
-						.css('box-shadow', boxShadowValue)
-						.css('border-color', deter.hex);
-				}	
-			},{
-				opacity: 0.8
-			});
+			$('#testPassword1')
+				.deter('border', {opacity: 0.8});
 
 			/**
 			 * Modify background color of a sibling box.
 			 */
-			$('#testPassword2').deter(function(deter, value){
-				//if no value, come back to the initial state (transparent background)
-				$(this).siblings('.colorBox')
-					.css('background-color', (value == '')? '' : deter.hex);
-			});
+			$('#testPassword2')
+				.deter('box-color');
+
+			/**
+			 * Modyfy elem background color
+			 */
+			$('#testPassword31')
+				.deter('background', {addDeterExtraMarkups: false, textColorMode:'default'});
+			$('#testPassword32')
+				.deter('background', {addDeterExtraMarkups: false, textColorMode:'complementary'});
+			$('#testPassword33')
+				.deter('background', {addDeterExtraMarkups: false, textColorMode:'monochrome'});
+
+			/**
+			 * Modyfy body background color + use delegated selector + chain other jquery events
+			 */
+			$('#testPassword3bis')
+				.deter('background', {events: 'keyup focus', target: 'body'})
+				.on('blur', function(e){
+					$('body')
+						.css('background-color', '');
+				});
+
+			/**
+			 * Generate an identicon into sibling element.
+			 */
+			$('#testPassword4')
+				.deter('box-identicon');
+
+			/**
+			 * Generate an identicon on the 'change' event and force redraw.
+			 */
+			$('#testPassword5')
+				.deter('box-identicon', { events: 'change' });
+
+			//resize the element and force the fingerprint canevas redraw
+			$('#testPassword5').siblings('.deter-fingerprint')
+				.hover(function(e){
+					var $this = $(this);
+					var $deterPassword = $this.siblings('.deter-password');
+					$this
+						.css('width', '100px')
+						.css('height', '100px');
+					$deterPassword
+						.trigger('repaint', {'value': $deterPassword.val()});
+				}, function(e){
+					var $this = $(this);
+					var $deterPassword = $this.siblings('.deter-password');
+					$this
+						.css('width', '')
+						.css('height', '');
+					$deterPassword
+						.trigger('repaint', {'value': $deterPassword.val()});
+				});
 
 			/**
 			 * Modify sibling box background color from a span and not an input.
 			 */
-			$('#testSpan1').deter(function(deter, value){
+			$('#testSpan1').deter(function(settings, deter, value){
 				//if no value, come back to the initial state (transparent background)
 				$(this).siblings('.colorBox')
 					.css('background-color', (value == '')? '' : deter.hex);
 			},{
-				events: 'click'
-			},
-				function(){
+				events: 'click',
+				addDeterExtraMarkups : false,
+				getContent: function(){
 			 		return $(this).text();
-				}
-			);
+		 		}
+			});
 
 			//add utilites button for the demo
 			$('#span1 .buttons a.clear').click(function(e){
@@ -86,100 +119,14 @@
 			        text += possible.charAt(Math.floor(Math.random() * possible.length));
 			    }
 				$('#testSpan1').text(text);
-			});	
-
-
-			/**
-			 * Modyfy body background color + use delegated selector + chain other jquery events
-			 */
-			$('#testPassword3')
-				.deter(function(deter, value){
-					//if no value, come back to the initial state (transparent background)
-					$('body')
-						.css('background-color', (value == '')? '' : deter.hex);
-				},{
-					events: 'keyup focus',
-					selectorDelegated: '#demo',
-					selectorDescendant: '#testPassword3'
-				})
-				.blur(function(e){
-					//desactivate deter on focus lost
-					$('body')
-						.css('background-color', '');
-				});
-			
-			/**
-			 * Generate an identicon into sibling element.
-			 */
-			$('#testPassword4').deter(function(deter, value){
-				var $elem = $(this).siblings('.identicon');
-				//if no value, come back to the initial state (destroy canevas)
-				if(value == ''){
-					$elem
-						.text('');
-				}else{
-					$elem
-						.identicon(
-							deter.md5,
-							deter.hex,
-							{
-								rotate:true,
-								size:100
-							});
-				}
-			});
-
-			/**
-			 * Generate an identicon into sibling element, only on change.
-			 */
-			$('#testPassword5').deter(function(deter, value){
-				var $elem = $(this).siblings('.identicon');
-				//if no value, come back to the initial state (destroy canevas)
-				if(value == ''){
-					$elem
-						.text('');
-				}else{
-					$elem
-						.identicon(
-							deter.md5,
-							deter.hex,
-							{
-								rotate:true,
-								size:100
-							});
-				}
-			}, {
-				events:'change'
 			});
 
 			/**
 			 * A more realistic identicon password case + fancy effects
 			 */
-			$('#testPassword6')
-				.deter(function(deter, value){
-					var $elem = $(this).siblings('.identicon');
-					//if no value, come back to the initial state (destroy canevas)
-					if(value == ''){
-						$elem
-							.text('');
-					}else{
-						$elem
-							.identicon(
-								deter.md5,
-								deter.hex,
-								{
-									rotate:true,
-									size:38
-								});
-					}
-				})
-				.focus(function(e){
-					//add a fancy box shadow effect on the canvas if the input is focused
-					$('#password6').addClass('focused');
-				})
-				.blur(function(e){
-					$('#password6').removeClass('focused');
-				});
+ 			$('#testPassword6')
+				.deter();
+
 		});
 	</script>
 
@@ -196,10 +143,29 @@
 		<p>
 			<label for="testPassword2">Change background of a sibling box (with css3 transition) : </label>
 			<input id="testPassword2" type="password"></input>
-			<span class="colorBox"></span>
 		</p>
+		<p>					
+			<label for="testPassword31">Change background of the current input  (textcolor = normal / complementary / monochrome): </label>
+			<input id="testPassword31" type="password"></input>
+			<input id="testPassword32" type="password"></input>
+			<input id="testPassword33" type="password"></input>
+		</p>
+		<p>					
+			<label for="testPassword3bis">Change background of the body (only if the password input got the focus) : </label>
+			<input id="testPassword3bis" type="password"></input>
+		</p>
+		<p>					
+			<label for="testPassword4">Generate an identicon (or a colored box on old browsers) : </label>
+			<input id="testPassword4" type="password"></input>
+		</p>
+		<h2>Advanced usage</h2>
+		<p>					
+			<label for="testPassword5">Bind only on the "change" event and force redraw on fingerprint hover :</label>
+			<input id="testPassword5" type="password"></input>
+		</p>
+
 		<p id="span1">
-			<label for="testSpan1">Use on something different than an input (span content)</label>
+			<label for="testSpan1">Use deter with full custom behaviour (get a look into the code):</label>
 			<span id="testSpan1">Click on me !</span>
 			<span class="colorBox"></span>
 			<span class="buttons">
@@ -207,26 +173,12 @@
 				<a class="fill" href="#" title="fill the span with new content">fill with a random string</a>
 			</span>
 		</p>
-		<p>					
-			<label for="testPassword3">Change background of the body (only if the password input got the focus) : </label>
-			<input id="testPassword3" type="password"></input>
-		</p>
-		<p>					
-			<label for="testPassword4">Generate an identicon (or a colored box on old browsers) : </label>
-			<input id="testPassword4" type="password"></input>
-			<span class="identicon"></span>
-		</p>
-		<p>					
-			<label for="testPassword5">Bind only on the "change" event : </label>
-			<input id="testPassword5" type="password"></input>
-			<span class="identicon"></span>
-		</p>
+
 		<h2>A real use case</h2>
 		<p id="password6">
 
 			<label for="testPassword6">Enter your password:</label>
 			<input id="testPassword6" type="password" placeholder="password"></input>
-			<span class="identicon"></span>
 		</p>
 	</section>
 	
