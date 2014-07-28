@@ -23,7 +23,7 @@ When the background is dark and the text color bright (or the opposite), it can 
 
 ####Default
 
-!(https://raw.githubusercontent.com/3ffy/deter/master/demo/background1.jpg)
+![background2](https://raw.githubusercontent.com/3ffy/deter/master/demo/background1.jpg)
 
 ```javascript
 //background = blue, color = black
@@ -33,7 +33,7 @@ $('#selector1')
 
 ####Complementary
 
-!(https://raw.githubusercontent.com/3ffy/deter/master/demo/background2.jpg)
+![background2](https://raw.githubusercontent.com/3ffy/deter/master/demo/background2.jpg)
 
 ```javascript
 //background = blue, color = orange
@@ -43,7 +43,7 @@ $('#selector2')
 
 ####Monochrome
 
-!(https://raw.githubusercontent.com/3ffy/deter/master/demo/background3.jpg)
+![background2](https://raw.githubusercontent.com/3ffy/deter/master/demo/background3.jpg)
 
 ```javascript
 //background = blue, color = white

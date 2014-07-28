@@ -87,7 +87,7 @@ $.fn.deter = function(mode, options);
 Advanced Usage
 --------------
 
-[GOTO: dedicated README file about advanced usages](README_ADVANCED.md)
+[GOTO: dedicated README file about advanced uses](README_ADVANCED.md)
 
 Miscellaneous
 --------------
