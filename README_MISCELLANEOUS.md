@@ -1,14 +1,14 @@
 Deter.js : Miscellaneous utilies functions
 ==========================================
 
-For is own process, Deter need some utilities function. Some of them could be usefull outside the plugin so i decided to pack them into the `$.extend` jQuery method.
+For its own process, Deter need some utilities function. They could be usefull outside the plugin so i decided to pack them into the `$.extend` jQuery method.
 
 Packed plugins
 --------------
 
 As deter use dependencies, you can ofc use these plugins. (They are included in the packaged version).
 
-####`$.md5` : Calculate the md5 hash of a string
+####Calculate the md5 hash of a string: `$.md5`
 
 ```javascript
 var md5 = $.md5(string);
@@ -16,7 +16,7 @@ var md5 = $.md5(string);
 
 *[More info about md5 algorithm](http://en.wikipedia.org/wiki/MD5)*
 
-####`$.fn.identicon` : Generate a canevas with identicon inside a dom element
+####Generate a canevas with identicon inside a dom element: `$.fn.identicon`
 
 ```javascript
 /**
