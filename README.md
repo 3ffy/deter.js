@@ -40,6 +40,7 @@ Usage: Deter is made to be easy to use !
 ```
 > Note that the minified packaged version `deter.packaged.min.js` include deter and all dependencies into a single file : it's all you need in production.
 
+----------------
 
 API
 ---
@@ -94,6 +95,8 @@ Miscellaneous
 --------------
 
 //TODO : list deter utilities that you can use outside deter (like color calculations etc).
+
+-----------
 
 Licence
 -------
