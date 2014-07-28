@@ -1,1 +1,97 @@
-//TODO : Explain custom mode + $.deter.title global setting
+Deter.js : Advanced Uses
+========================
+
+Change boxes title
+----------------------
+
+```javascript
+$(document).ready(function(){
+   
+   //modify the title of all elements 
+   $.deter.boxTitle = 'new title for identicon boxes';
+
+   //... later ...
+
+   $('selector').deter();
+
+});
+```
+Improve text readability with `deter.settings.mode` = `background`
+-----------------------------------------------------------------
+
+When the background is dark and the text color bright (or the opposite), it can be really difficult to read the text of the input. To improve the user experience you can ask to deter to modify the text color. 
+
+####Default
+
+[![background = blue, color = black](https://raw.githubusercontent.com/3ffy/deter/master/demo/background1.jpg)]
+
+```javascript
+$('#selector1')
+    .deter('background', { textColorMode: 'default' });
+```
+
+####Complementary
+
+[![background = blue, color = orange](https://raw.githubusercontent.com/3ffy/deter/master/demo/background2.jpg)]
+
+```javascript
+$('#selector2')
+    .deter('background', { textColorMode: 'complementary' });
+```
+
+####Monochrome
+
+[![background = blue, color = white](https://raw.githubusercontent.com/3ffy/deter/master/demo/background2.jpg)]
+
+```javascript
+$('#selector3')
+    .deter('background', { textColorMode: 'monochrome' });
+```
+
+>Monochrome is really handy and is probably the only one you will need.
+
+Don't use a predefined deter behaviour 
+--------------------------------------
+
+*To simplify, i did something similiar than the predefined behaviour box-color.*
+
+```javascript
+//In that case deter can't help you, the value has to be extracted from a span, not an input.
+$('#testSpan1').deter(function(settings, deter, value){
+    //if no value, come back to the initial state (transparent background)
+    $(this).siblings('.colorBox')
+        .css('background-color', (value == '')? '' : deter.hex);
+},{
+    events: 'click',
+    addDeterExtraMarkups : false,
+    getContent: function(){
+        return $(this).text();
+    }
+});
+```
+
+Force to redraw the identicon canevas
+-------------------------------------
+
+Just fire a custom jQuery event named `repaint` and deter will catch it
+
+```javascript
+//The value option is mandatory
+$('#deter-password1')
+    .trigger('repaint', {'value': $('#deter-password1').val()});
+```
+
+Delegate events
+---------------
+
+When the input password is created dynamically, you are not able to attach deter to the element. You need to attach events to an element who is already existing (as `$(body)`).
+
+```javascript
+$('body').deter('default', { selectorDelegated: '#deter-password1' });
+
+//... later ...
+
+$('something').append('<input type="password" id="deter-password1"></input>');
+```
+
+**NB:** /!\ This feature is untested at the moment and could not work. /!\
