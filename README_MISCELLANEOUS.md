@@ -1,5 +1,5 @@
-Deter.js : Miscellaneous
-========================
+Deter.js : Miscellaneous utilies functions
+==========================================
 
 For is own process, Deter need some utilities function. Some of them could be usefull outside the plugin so i decided to pack them into the `$.extend` jQuery method.
 
@@ -8,13 +8,15 @@ Packed plugins
 
 As deter use dependencies, you can ofc use these plugins. (They are included in the packaged version).
 
-####md5
+####`$.md5` : Calculate the md5 hash of a string
 
 ```javascript
 var md5 = $.md5(string);
 ```
 
-####identicon
+*[More info about md5 algorithm]<http://en.wikipedia.org/wiki/MD5>*
+
+####`$.fn.identicon` : Generate a canevas with identicon inside a dom element
 
 ```javascript
 /**
@@ -30,16 +32,12 @@ var md5 = $.md5(string);
 $(selector).identicon(md5, color, options);
 ```
 
-> Ofc you can use the original identicon5 plugin directly, but deter offer a nice gateway with fallback. It's the same, but bulletproof.
-
-
-####hexToRgb
-
+> Of course you can use the original identicon5 plugin directly, but deter offer a nice gateway with fallback. It's the same, but bulletproof.
 
 Color calculations
 ------------------
 
-####hexToRgb
+####Convert hexadecimal color to rgb color
 
 ```javascript
 /**
@@ -51,7 +49,7 @@ Color calculations
 var rgb = $.hexToRgb(hex);
 ```
 
-####rgbToXyz
+####Convert rgb color to xyz color
 
 ```javascript
 /**
@@ -63,7 +61,9 @@ var rgb = $.hexToRgb(hex);
 var xyz = $.rgbToXyz(rgb);
 ```
 
-####xyzToLab
+*[More info about xyz color space]<http://en.wikipedia.org/wiki/CIE_1931_color_space>*
+
+####Convert xyz color to cie lab color
 
 ```javascript
 /**
@@ -74,8 +74,9 @@ var xyz = $.rgbToXyz(rgb);
  */
 var lab = $.xyzToLab(xyz);
 ```
+*[More info about lab color space]<http://en.wikipedia.org/wiki/Lab_color_space>*
 
-####getComplementaryColor
+####Get the complementary color of a given one
 
 ```javascript
 /**
@@ -89,7 +90,7 @@ var lab = $.xyzToLab(xyz);
 var rgb = $.getComplementaryColor(rgb, pygment);
 ```
 
-####getClosestColor
+####Get the closest color from 2 candidates ones
 
 ```javascript
 /**
@@ -103,7 +104,7 @@ var rgb = $.getComplementaryColor(rgb, pygment);
 var rgb = $.getClosestColor(rgb, rgbCandidate1, rbgcandidate2);
 ```
 
-####getFurtherColor
+####Get the durther color from 2 candidates ones
 
 ```javascript
 /**
