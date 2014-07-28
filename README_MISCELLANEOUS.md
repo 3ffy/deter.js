@@ -76,6 +76,8 @@ var lab = $.xyzToLab(xyz);
 ```
 *[More info about lab color space](http://en.wikipedia.org/wiki/Lab_color_space)*
 
+> Note that xyz and lab 'color' (space in reality) are only arbitrary approximations. They are usefull to determine a color value **close** from the human vison.
+
 ####Get the complementary color of a given one
 
 ```javascript
