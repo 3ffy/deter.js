@@ -253,7 +253,7 @@
 		getClosestColor: function(rgb, rgbCandidate1, rbgcandidate2) {
 			//use black and white as default candidates
 			if (typeof rgbCandidate1 != 'object') {
-				rgbSeed1 = {
+				rbgcandidate1 = {
 					r: 0,
 					g: 0,
 					b: 0
