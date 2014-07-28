@@ -23,27 +23,30 @@ When the background is dark and the text color bright (or the opposite), it can 
 
 ####Default
 
-[![background = blue, color = black](https://raw.githubusercontent.com/3ffy/deter/master/demo/background1.jpg)]
+(https://raw.githubusercontent.com/3ffy/deter/master/demo/background1.jpg)
 
 ```javascript
+//background = blue, color = black
 $('#selector1')
-    .deter('background', { textColorMode: 'default' });
+    .deter('background');
 ```
 
 ####Complementary
 
-[![background = blue, color = orange](https://raw.githubusercontent.com/3ffy/deter/master/demo/background2.jpg)]
+(https://raw.githubusercontent.com/3ffy/deter/master/demo/background2.jpg)
 
 ```javascript
+//background = blue, color = orange
 $('#selector2')
     .deter('background', { textColorMode: 'complementary' });
 ```
 
 ####Monochrome
 
-[![background = blue, color = white](https://raw.githubusercontent.com/3ffy/deter/master/demo/background2.jpg)]
+(https://raw.githubusercontent.com/3ffy/deter/master/demo/background3.jpg)
 
 ```javascript
+//background = blue, color = white
 $('#selector3')
     .deter('background', { textColorMode: 'monochrome' });
 ```
