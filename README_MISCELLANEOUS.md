@@ -6,7 +6,7 @@ For its own process, Deter need some utilities function. They could be usefull o
 Packed plugins
 --------------
 
-As deter use dependencies, you can ofc use these plugins. (They are included in the packaged version).
+As deter use dependencies, you can use these plugins as well. (They are included in the packaged version).
 
 ####Calculate the md5 hash of a string: `$.md5`
 
