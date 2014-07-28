@@ -92,7 +92,7 @@ Advanced Usage
 Miscellaneous
 --------------
 
-[GOTO: dedicated README file about utilities functions you can use outside deter](README_ADVANCED.md)
+[GOTO: dedicated README file about utilities functions you can use outside deter](README_MISCELLANEOUS.md)
 
 -----------
 

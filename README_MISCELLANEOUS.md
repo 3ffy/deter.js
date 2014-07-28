@@ -33,7 +33,6 @@ $(selector).identicon(md5, color, options);
 > Ofc you can use the original identicon5 plugin directly, but deter offer a nice gateway with fallback. It's the same, but bulletproof.
 
 
-
 ####hexToRgb
 
 
