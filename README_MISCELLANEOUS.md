@@ -14,7 +14,7 @@ As deter use dependencies, you can ofc use these plugins. (They are included in 
 var md5 = $.md5(string);
 ```
 
-*[More info about md5 algorithm]<http://en.wikipedia.org/wiki/MD5>*
+*[More info about md5 algorithm](http://en.wikipedia.org/wiki/MD5)*
 
 ####`$.fn.identicon` : Generate a canevas with identicon inside a dom element
 
@@ -61,7 +61,7 @@ var rgb = $.hexToRgb(hex);
 var xyz = $.rgbToXyz(rgb);
 ```
 
-*[More info about xyz color space]<http://en.wikipedia.org/wiki/CIE_1931_color_space>*
+*[More info about xyz color space](http://en.wikipedia.org/wiki/CIE_1931_color_space)*
 
 ####Convert xyz color to cie lab color
 
@@ -74,7 +74,7 @@ var xyz = $.rgbToXyz(rgb);
  */
 var lab = $.xyzToLab(xyz);
 ```
-*[More info about lab color space]<http://en.wikipedia.org/wiki/Lab_color_space>*
+*[More info about lab color space](http://en.wikipedia.org/wiki/Lab_color_space)*
 
 ####Get the complementary color of a given one
 
