@@ -17,9 +17,7 @@ Deter main aim is to provide to the user a way to determine if he misspelled his
 Usage (predefined behaviours)
 -----------------------------
 
-### Normal usage (generate identicon into a sibling box)
-
-*Deter is made to be easy to use !*
+### Usage: Deter is made to be easy to use !
 
 ```html
 <html>
@@ -30,7 +28,7 @@ Usage (predefined behaviours)
 
             $(document).ready(function(){
 
-                //it's all you need, deter will add extra markup and events for you
+                //Normal usage: generate identicon into a sibling box
                 $('#deter-password').deter();
 
             });
@@ -93,7 +91,12 @@ $.fn.deter = function(mode, options);
 Advanced Usage
 --------------
 
-//TODO
+//TODO : Explain custom mode + $.deter.title global setting
+
+Miscellaneous
+--------------
+
+//TODO : list deter utilities that you can use outside deter (like color calculations etc).
 
 Licence
 -------
