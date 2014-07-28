@@ -14,10 +14,8 @@ Deter main aim is to provide to the user a way to determine if he misspelled his
 
 *(or get a look into the `demo/` folder to find the static version)*
 
-Usage (predefined behaviours)
+Usage: Deter is made to be easy to use !
 -----------------------------
-
-### Usage: Deter is made to be easy to use !
 
 ```html
 <html>
