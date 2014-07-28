@@ -23,7 +23,7 @@ When the background is dark and the text color bright (or the opposite), it can 
 
 ####Default
 
-(https://raw.githubusercontent.com/3ffy/deter/master/demo/background1.jpg)
+!(https://raw.githubusercontent.com/3ffy/deter/master/demo/background1.jpg)
 
 ```javascript
 //background = blue, color = black
@@ -33,7 +33,7 @@ $('#selector1')
 
 ####Complementary
 
-(https://raw.githubusercontent.com/3ffy/deter/master/demo/background2.jpg)
+!(https://raw.githubusercontent.com/3ffy/deter/master/demo/background2.jpg)
 
 ```javascript
 //background = blue, color = orange
@@ -43,7 +43,7 @@ $('#selector2')
 
 ####Monochrome
 
-(https://raw.githubusercontent.com/3ffy/deter/master/demo/background3.jpg)
+!(https://raw.githubusercontent.com/3ffy/deter/master/demo/background3.jpg)
 
 ```javascript
 //background = blue, color = white
@@ -94,7 +94,7 @@ $('body').deter('default', { selectorDelegated: '#deter-password1' });
 
 //... later ...
 
-$('something').append('<input type="password" id="deter-password1"></input>');
+$('parentContainer').append('<input type="password" id="deter-password1"></input>');
 ```
 
 **NB:** /!\ This feature is untested at the moment and could not work. /!\
