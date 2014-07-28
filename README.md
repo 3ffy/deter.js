@@ -26,7 +26,7 @@ Usage: Deter is made to be easy to use !
 
             $(document).ready(function(){
 
-                //Normal usage: generate identicon into a sibling box
+                //Normal usage: generate identicon into a sibling box (= box-identicon)
                 $('#deter-password').deter();
 
             });
@@ -38,8 +38,7 @@ Usage: Deter is made to be easy to use !
     </body>
 </html>
 ```
-> Note that the minified packaged version include deter and all dependencies into a single file : it's all you need in production.
-> If the browser don't support html5 canevas, the fallback box-background behaviour will be used instead the default one (aka: box-identicon).
+> Note that the minified packaged version `deter.packaged.min.js` include deter and all dependencies into a single file : it's all you need in production.
 
 
 API
@@ -58,13 +57,13 @@ $.fn.deter = function(mode, options);
 ```
 #### mode
 
-| Name                                   | Type     | Description                                                                                |
-|----------------------------------------|----------|--------------------------------------------------------------------------------------------|
-| box-identicon (or default, or nothing) | string   | Generate a canevas with identicon into a sibling box                                       |
-| box-color                              | string   | Modify the background color of a sibling box                                               |
-| background                             | string   | Modify the background of the element (default) or another one (ex: the body of the page)   |
-| border                                 | string   | Modify the borders color and the box-shadow of the element (default) or another one        |
-| custom                                 | function | Use a custom callback to create your own behaviour (see the  [Advanced Usage](#advanced-usage) section bellow) |
+| Name                                   | Type     | Description |
+|----------------------------------------|----------|-------------|
+| box-identicon (or default, or nothing) | string   | Generate a canevas with identicon into a sibling box. If the browser don't support html5 canevas, box-color modewill be used as fallback. |
+| box-color                              | string   | Modify the background color of a sibling box. |
+| background                             | string   | Modify the background of the element (default) or another one (ex: the body of the page). |
+| border                                 | string   | Modify the borders color and the box-shadow of the element (default) or another one. |
+| custom                                 | function | Use a custom callback to create your own behaviour (see the  [Advanced Usage](#advanced-usage) section bellow). |
 
 
 
