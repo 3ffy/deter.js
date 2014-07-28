@@ -89,12 +89,12 @@ $.fn.deter = function(mode, options);
 Advanced Usage
 --------------
 
-//TODO : Explain custom mode + $.deter.title global setting
+[GOTO: dedicated README file about advanced usages](README_ADVANCED.md)
 
 Miscellaneous
 --------------
 
-//TODO : list deter utilities that you can use outside deter (like color calculations etc).
+[GOTO: dedicated README file about utilities functions you can use outside deter](README_ADVANCED.md)
 
 -----------
 
