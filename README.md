@@ -62,7 +62,7 @@ $.fn.deter = function(mode, options);
 ```
 #### mode
 
-| Name                                   | Type     | Info                                                                                       |
+| Name                                   | Type     | Description                                                                                |
 |----------------------------------------|----------|--------------------------------------------------------------------------------------------|
 | box-identicon (or default, or nothing) | string   | Generate a canevas with identicon into a sibling box                                       |
 | box-color                              | string   | Modify the background color of a sibling box                                               |
@@ -78,32 +78,17 @@ $.fn.deter = function(mode, options);
 |----------------------|--------------------|-----------|-------------|------|
 | sequence             | bool               | false     | The type of deter object to serve to the callback | Sequence = calculate all the colors of string offset. You will never need it instead you try to generate a graph or something similar (+ the cpu cost is bigger relative to the number of calculation) |
 | opacity              | float              | 1         | If the deter mode is based on rgba, it will use the opacity value into the result ( = alpha) | Note that the `border` mode will use the opacity for the box-shadow and ignore it for the border color |
-| canevasSize          | mixed (int/string) | 'auto'    | | |
-| addDeterExtraMarkups | bool               | true      | | |
-| getContent           | function           | null      | | |
-| events               | string             | 'keyup'   | | |
-| selectorDelegated    | string             | null      | | |
-| selectorDescendant   | string             | null      | | |
-| addClass             | string             | ''        | | |
-| textColorMode        | string             | 'default' | | |
-| target               | string             | null      | | |
+| canevasSize          | mixed (int/string) | 'auto'    | The size of the canevas to generate (in pixel) | If set to 'auto', the size of the `.deter-fingerprint` parent will be used. |
+| addDeterExtraMarkups | bool               | true      | If set to true, element will added to facilited css customisation and correspond to the predifined deter behaviour events | |
+| getContent           | function           | null      | A callback to use to know how to get the text value of the element who will trigger deter | Usefull if you use something different than an input ($(this).val() is used by default) |
+| events               | string             | 'keyup'   | One or more space-separated event types and optional namespaces, such as "click" or "keydown.myPlugin" | You can even use custom events |
+| selectorDelegated    | string             | null      | A selector string to filter the descendants of the selected elements that trigger the event. If the selector is null or omitted, the event is always triggered when it reaches the selected element. | Cf. <http://api.jquery.com/on/> param selector |
+| selectorDescendant   | string             | null      | The selector to elements who will fire the deter event | If null, the current element is used. Usefull if you want to attach deter to element created dynamically |
+| addClass             | string             | ''        | The classes to add to the deter-container element (separate them with a space) | Only relevant if the `addDeterExtraMarkups` option is set to `true` |
+| textColorMode        | string             | 'default' | Will change the value of the text color to improve readibility. | Only relevant with the `background` mode. Values are 'default' (= always black), 'complementary' (= the opposite color), 'monochrome' (= white if the background is dark, black if the backround is bright) |
+| target               | string             | null      | The target element for the modifications | Only relevant in `background` and `border` modes (default = the current element) |
 
 > Note that if you use the custom mode, the settings are passed as a callback argument, so you can add your own values into settings and use it later inside the callback.
-
-        var settings = $.extend({
-            sequence: false,
-            opacity: 1,
-            canevasSize: 'auto',
-            addDeterExtraMarkups: true,
-            getContent: null,
-            events: 'keyup',
-            selectorDelegated: null,
-            selectorDescendant: null,
-            addClass: '',
-            textColorMode: 'default', //values are 'default', 'monochrome', 'complementary'
-            target: null
-        }, options);
-
 
 Advanced Usage
 --------------
