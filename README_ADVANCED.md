@@ -76,7 +76,7 @@ $('#testSpan1').deter(function(settings, deter, value){
 Force to redraw the identicon canevas
 -------------------------------------
 
-Just fire a custom jQuery event named `repaint` and deter will catch it
+You only have to fire a custom jQuery event named `repaint` and deter will catch it
 
 ```javascript
 //The value option is mandatory
