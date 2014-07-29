@@ -118,6 +118,6 @@ What's next ?
 
 2. The plugin is ready to handle sequence, but the gateway plugin used to generated canevas is not made to provide multiple kind of results. I need to improve that part to be able to "plug" multiple solution and not only the `identicon5` one. With the sequence result, i would like to generate a mini graph so the user will be able to see more clearly if the password is misstyped or not than with identicons.
 
-3. When DomElements will be stable (included in all browsers) it will be awesome to create a dom element '<input type="password-deter"></input>' with all the behaviours ready to use.
+3. When DomElements will be stable (included in all browsers) it will be awesome to create a dom element `<input type="password-deter"></input>` with all the behaviours ready to use.
 
 > :heart: This plugin is made with love, give it some love back reporting bugs ! - 3ffy
