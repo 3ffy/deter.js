@@ -87,14 +87,20 @@ $('#deter-password1')
 Delegate events
 ---------------
 
-When the input password is created dynamically, you are not able to attach deter to the element. You need to attach events to an element who is already existing (as `$(body)`).
+When the input password is created dynamically, you are not able to attach deter to the element. You need to attach events to an element already existing inside the dom (as `$(body)` or the future container of the elements).
 
 ```javascript
-$('body').deter('default', { selectorDelegated: '#deter-password1' });
+//delegate 
+$('body').deter('box-identicon', { selectorDelegated: '.dynamicInputsPassword' })
 
-//... later ...
+// ... later ...
 
-$('parentContainer').append('<input type="password" id="deter-password1"></input>');
+//create the elements 
+$('#dynamicContainer')
+  .append('<input type="password" id="dynamicPassword1" class="dynamicInputsPassword"></input>')
+  .append('<input type="password" id="dynamicPassword2" class="dynamicInputsPassword"></input>');
+//add deter extra markups     
+$.deter.wrapWithMarkup('.dynamicInputsPassword', 'box-identicon');
 ```
 
-**NB:** /!\ This feature is untested at the moment and could not work. /!\
+> `$.deter.wrapWithMarkup` let you ask deter to wrap the element with the extra markups (as $.fn.deter.settings.addDeterExtraMarkups = true). You have to call it by yourself in this case because the element don't exist when deter is initialized.

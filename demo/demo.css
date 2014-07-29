@@ -103,6 +103,11 @@ input[type="password"]
     float: left;
 }
 
+.deter-container
+{
+    clear: both;
+}
+
 #testSpan1
 {
     float: left;

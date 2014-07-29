@@ -1,6 +1,6 @@
-/* deter - version: 3.0 - author: 3ffy (Aurélien Gy) - aureliengy@gmail.com - http://www.aureliengy.com - licence: BSD 3-Clause Licence (@see licence file or https://raw.githubusercontent.com/3ffy/deter/master/LICENSE). Note that the plugins "JQuery.Identicon5" by Francis Shanahan (http://archive.plugins.jquery.com/project/identicon5) and "JQuery.MD5" by Gabriele Romanato (http://blog.gabrieleromanato.com) are separated project and get their own licence. */
+/* deter - version: 3.1 - author: 3ffy (Aurélien Gy) - aureliengy@gmail.com - http://www.aureliengy.com - licence: BSD 3-Clause Licence (@see licence file or https://raw.githubusercontent.com/3ffy/deter/master/LICENSE). Note that the plugins "JQuery.Identicon5" by Francis Shanahan (http://archive.plugins.jquery.com/project/identicon5) and "JQuery.MD5" by Gabriele Romanato (http://blog.gabrieleromanato.com) are separated project and get their own licence. */
 
-//TODO : create a real js library about colors, not some utilities function inside the deter plugin... But it will be a lot of work :')...
+//TODO: $.fn.deter.settings.target if relevant only in few cases, it should be relevant in all the case and let the user specify the visual target by himself in all cases.
 
 (function($) {
 
@@ -11,6 +11,38 @@
 	//package settings to let the user change them from outside the plugin
 	var deter = {};
 	deter.boxTitle = 'If this picture is not the one you use to see, your password is misspelled.';
+
+	/**
+	 * Add deter extra markups.
+	 *
+	 * @param {string} elemSelector The selector representing dom elements to affect.
+	 * @param {string} mode         The mode choosen for deter.
+	 * @param {string} addClass     [optional] The eventual extra classes to add to the deter-container element.
+	 */
+	deter.wrapWithMarkup = function(elemSelector, mode, addClass) {
+		if (typeof mode != 'string') {
+			throw 'Param \'mode\' is mandatory.';
+		} else if (mode == 'default') {
+			mode = 'box-identicon';
+		}
+		if (typeof addClass != 'string') {
+			addClass = '';
+		}
+		//get the element to wrap
+		$elem = $(elemSelector);
+		//wrap the element
+		classbox = ' ' + addClass + ' deter-mode-' + mode;
+		if (mode == 'box-identicon' || mode == 'box-color') {
+			classbox += ' deter-behaviour-box';
+		}
+		$elem
+			.addClass('deter-password')
+			.wrap('<div class="deter-container' + classbox + '"></div>');
+		if (mode != 'body' && mode != 'border' && mode != 'background') {
+			$('<span class="deter-fingerprint"></span>')
+				.insertAfter($elem);
+		}
+	};
 
 	/**
 	 * Return determinist color from a dynamic text. (one string = one color, always the same one).
@@ -283,7 +315,7 @@
 		/**
 		 * Get the further color of a seed color from 2 candidate ones.
 		 * (Usefull to improve readability : you can decide if it's better to writte black or white depending of the background color).
-		 * 
+		 *
 		 * @param {object} rgb           The seed rgb color used for calculations.
 		 * @param {object} rgbCandidate1 [optional] The first candidate rgb color (default = black).
 		 * @param {object} rbgcandidate2 [optional] The second candidate rgb color (default = white).
@@ -365,7 +397,6 @@
 			getContent: null,
 			events: 'keyup',
 			selectorDelegated: null,
-			selectorDescendant: null,
 			addClass: '',
 			textColorMode: 'default', //values are 'default', 'monochrome', 'complementary'
 			target: null
@@ -385,24 +416,10 @@
 			behaviour = 'box-color';
 		}
 		//add deter extra markups
-		if (settings.addDeterExtraMarkups == true) {
-			var classbox;
-			this.each(function() {
-				classbox = ' ' + settings.addClass + ' deter-mode-' + behaviour;
-				if (behaviour == 'box-identicon' || behaviour == 'box-color') {
-					classbox += ' deter-behaviour-box';
-				}
-				$(this)
-					.addClass('deter-password')
-					.wrap('<div class="deter-container' + classbox + '"></div>');
-				if (behaviour != 'body' && behaviour != 'border' && behaviour != 'background') {
-					$('<span class="deter-fingerprint"></span>')
-						.insertAfter($(this));
-				}
-			});
+		if (settings.selectorDelegated === null && settings.addDeterExtraMarkups == true) {
+			$.deter.wrapWithMarkup(this, behaviour, settings.addClass);
 		}
 		//attach the behaviour & events wished to the elements
-		var selector = (settings.selectorDelegated === null) ? this : settings.selectorDelegated;
 		switch (behaviour) {
 			case 'custom':
 				settings.callback = mode;
@@ -421,8 +438,8 @@
 				settings.callback = behaviourBoxIdenticon;
 		}
 		//attach the events to the behaviours
-		$(selector)
-			.on(settings.events, settings.selectorDescendant, settings, behaviourMeta);
+		$(this)
+			.on(settings.events, settings.selectorDelegated, settings, behaviourMeta);
 		//don't break jQuery chain events
 		return this;
 	};

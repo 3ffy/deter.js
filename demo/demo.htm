@@ -122,7 +122,21 @@
 			});
 
 			/**
-			 * A more realistic identicon password case + fancy effects
+			 * Delegate deter behaviour (deter is compatible with dynamic dom creation)
+			 */			
+			$('body').deter('box-identicon', { selectorDelegated: '.dynamicInputsPassword' })
+
+			// ... later ...
+			
+			//create the elements 
+			$('#dynamicContainer')
+				.append('<input type="password" id="dynamicPassword1" class="dynamicInputsPassword"></input>')
+				.append('<input type="password" id="dynamicPassword2" class="dynamicInputsPassword"></input>');
+			//add deter extra markups			
+			$.deter.wrapWithMarkup('.dynamicInputsPassword', 'box-identicon');
+
+			/**
+			 * A more realistic identicon password case + fancy effects (in 99% of the case, it's all you need)
 			 */
  			$('#testPassword6')
 				.deter();
@@ -173,7 +187,11 @@
 				<a class="fill" href="#" title="fill the span with new content">fill with a random string</a>
 			</span>
 		</p>
-
+	
+		<p id="dynamicContainer">
+			<label for="#">Use deter on dom element created dynamically (get a look into the code):</label>
+		</p>
+		
 		<h2>A real use case</h2>
 		<p id="password6">
 
