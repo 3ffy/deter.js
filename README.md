@@ -22,7 +22,8 @@ Usage: Deter is made to be easy to use !
 ```html
 <html>
     <head>
-        <script src="https://cdn.rawgit.com/3ffy/deter.js/master/deter.packed.min.js"></script> 
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="../deter.packed.min.js"></script> 
         
         <script>
 
