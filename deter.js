@@ -1,4 +1,4 @@
-/* deter - version: 3.1 - author: 3ffy (Aurélien Gy) - aureliengy@gmail.com - http://www.aureliengy.com - licence: BSD 3-Clause Licence (@see licence file or https://raw.githubusercontent.com/3ffy/deter/master/LICENSE). Note that the plugins "JQuery.Identicon5" by Francis Shanahan (http://archive.plugins.jquery.com/project/identicon5) and "JQuery.MD5" by Gabriele Romanato (http://blog.gabrieleromanato.com) are separated project and get their own licence. */
+/* deter - version: 3.2 - author: 3ffy (Aurélien Gy) - aureliengy@gmail.com - http://www.aureliengy.com - licence: BSD 3-Clause Licence (@see licence file or https://raw.githubusercontent.com/3ffy/deter/master/LICENSE). Note that the plugins "JQuery.Identicon5" by Francis Shanahan (http://archive.plugins.jquery.com/project/identicon5) and "JQuery.MD5" by Gabriele Romanato (http://blog.gabrieleromanato.com) are separated project and get their own licence. */
 
 //TODO: $.fn.deter.settings.target if relevant only in few cases, it should be relevant in all the case and let the user specify the visual target by himself in all cases.
 
@@ -461,7 +461,16 @@
 		}, options);
 		if (settings.size == 'auto') {
 			var $container = $(this);
-			settings.size = Math.min($container.width(), $container.height());
+			var containerWidth = $container.width();
+			var containerHeight = $container.height();
+			if(containerWidth == 0){
+				settings.size = containerHeight;
+			}else if(containerHeight == 0){
+				settings.size = containerWidth;
+			}else{
+				settings.size = Math.min(containerWidth, containerHeight);
+			}
+			console.log('size', settings.size, containerWidth, containerHeight)
 		}
 		//create the canvas for each element
 		if (canvasSupported) {
