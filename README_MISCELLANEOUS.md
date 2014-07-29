@@ -106,7 +106,7 @@ var rgb = $.getComplementaryColor(rgb, pygment);
 var rgb = $.getClosestColor(rgb, rgbCandidate1, rbgcandidate2);
 ```
 
-####Get the durther color from 2 candidates ones
+####Get the further color from 2 candidates ones
 
 ```javascript
 /**
