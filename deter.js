@@ -1,4 +1,4 @@
-/* deter - version: 3.3 - author: 3ffy (Aurélien Gy) - aureliengy@gmail.com - http://www.aureliengy.com - licence: BSD 3-Clause Licence (@see licence file or https://raw.githubusercontent.com/3ffy/deter/master/LICENSE). Note that the plugins "JQuery.Identicon5" by Francis Shanahan (http://archive.plugins.jquery.com/project/identicon5) and "JQuery.MD5" by Gabriele Romanato (http://blog.gabrieleromanato.com) are separated project and get their own licence. */
+/* deter - version: 3.4 - author: 3ffy (Aurélien Gy) - aureliengy@gmail.com - http://www.aureliengy.com - licence: BSD 3-Clause Licence (@see licence file or https://raw.githubusercontent.com/3ffy/deter/master/LICENSE). Note that the plugins "JQuery.Identicon5" by Francis Shanahan (http://archive.plugins.jquery.com/project/identicon5) and "JQuery.MD5" by Gabriele Romanato (http://blog.gabrieleromanato.com) are separated project and get their own licence. */
 
 //TODO: $.fn.deter.settings.target if relevant only in few cases, it should be relevant in all the case and let the user specify the visual target by himself in all cases.
 
@@ -463,11 +463,11 @@
 			var $container = $(this);
 			var containerWidth = $container.width();
 			var containerHeight = $container.height();
-			if(containerWidth == 0){
+			if (containerWidth == 0) {
 				settings.size = containerHeight;
-			}else if(containerHeight == 0){
+			} else if (containerHeight == 0) {
 				settings.size = containerWidth;
-			}else{
+			} else {
 				settings.size = Math.min(containerWidth, containerHeight);
 			}
 		}
@@ -506,6 +506,7 @@
 
 	$(document)
 		.ready(function() {
+
 			//add globals deter events
 			$('body')
 				.on('click', 'div.deter-container.deter-behaviour-box', function(e) {
@@ -576,11 +577,20 @@
 								size: canevasSize
 							});
 				});
-			//bugfix browser autofill bug
+
+			//bugfix browser autofill (if autofilled, the value of the input is not accessible when the dom is loaded, it is only after few millisec)
 			setTimeout(function() {
 				$('div.deter-container.deter-behaviour-box > .deter-password')
-					.trigger('repaint');
+					.each(function() {
+						var $this = $(this);
+						//only if the input is empty
+						if ($this.val() == '') {
+							$this
+								.trigger('repaint');
+						}
+					});
 			}, 100);
+
 		});
 
 })(jQuery);
