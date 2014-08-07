@@ -1,8 +1,11 @@
 Deter.js : Advanced Uses
 ========================
 
+* auto-gen TOC:
+{:toc}
+
 Change boxes title
-----------------------
+------------------
 
 ```javascript
 $(document).ready(function(){
@@ -16,8 +19,19 @@ $(document).ready(function(){
 
 });
 ```
+
+Desactivate identicon autodraw on autofill
+------------------------------------------
+
+By default, deter will draw the identicon canevas (if you use that predefined mode ofc) when the input password used to bind the deter event is autofilled by the browser. But you can wish turn off this feature (and earn some cpu ressources)so the identicon will be draw only when the user modify the autofilled value.
+
+```javascript
+$.deter.autofillDrawIdenticon = false;
+});
+```
+
 Improve text readability with `deter.settings.mode` = `background`
------------------------------------------------------------------
+------------------------------------------------------------------
 
 When the background is dark and the text color bright (or the opposite), it can be really difficult to read the text of the input. To improve the user experience you can ask to deter to modify the text color. 
 

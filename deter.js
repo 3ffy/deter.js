@@ -1,4 +1,4 @@
-/* deter - version: 3.4 - author: 3ffy (Aurélien Gy) - aureliengy@gmail.com - http://www.aureliengy.com - licence: BSD 3-Clause Licence (@see licence file or https://raw.githubusercontent.com/3ffy/deter/master/LICENSE). Note that the plugins "JQuery.Identicon5" by Francis Shanahan (http://archive.plugins.jquery.com/project/identicon5) and "JQuery.MD5" by Gabriele Romanato (http://blog.gabrieleromanato.com) are separated project and get their own licence. */
+/* deter - version: 3.7 - author: 3ffy (Aurélien Gy) - aureliengy@gmail.com - http://www.aureliengy.com - licence: BSD 3-Clause Licence (@see licence file or https://raw.githubusercontent.com/3ffy/deter/master/LICENSE). Note that the plugins "JQuery.Identicon5" by Francis Shanahan (http://archive.plugins.jquery.com/project/identicon5) and "JQuery.MD5" by Gabriele Romanato (http://blog.gabrieleromanato.com) are separated project and get their own licence. */
 
 //TODO: $.fn.deter.settings.target if relevant only in few cases, it should be relevant in all the case and let the user specify the visual target by himself in all cases.
 
@@ -10,7 +10,10 @@
 
 	//package settings to let the user change them from outside the plugin
 	var deter = {};
+	//the default title for identicon boxes
 	deter.boxTitle = 'If this picture is not the one you use to see, your password is misspelled.';
+	//if true, deter will draw the identicon when autofill is set on the input (consume some ressources). If false, only when the user will type content manually.
+	deter.autofillDrawIdenticon = true;
 
 	/**
 	 * Add deter extra markups.
@@ -485,7 +488,7 @@
 				}
 			});
 		} else {
-			//use background color of a span if canevas not supported		
+			//use background color of a span if canevas not supported       
 			this.each(function() {
 				var $this = $(this);
 				if (typeof md5 == 'string') {
@@ -578,19 +581,53 @@
 							});
 				});
 
-			//bugfix browser autofill (if autofilled, the value of the input is not accessible when the dom is loaded, it is only after few millisec)
-			setTimeout(function() {
-				$('div.deter-container.deter-behaviour-box > .deter-password')
+		});
+
+	if ($.deter.autofillDrawIdenticon == true) {
+
+		$(window)
+			.load(function() {
+
+				//detect if the browser is webkit based
+				var isWebkit = /webkit/.test(navigator.userAgent.toLowerCase());
+
+				//bugfix browser autofill : if autofilled, the value of the input is not accessible when the dom is loaded, it is only after few millisec.
+				// On Webkit browsers (as chrome), the behaviour is the same on the first loading of the page, but when the page is cached the autofilled input passwords got a value only when they became visible on the screen.
+				$('div.deter-container.deter-mode-box-identicon > .deter-password')
 					.each(function() {
 						var $this = $(this);
-						//only if the input is empty
-						if ($this.val() == '') {
-							$this
-								.trigger('repaint');
+						//special behaviour about chrome (we need to test if the navigator is webkit based because the filter `:-webkit-autofill` will throw a syntaxError on other browsers)
+						if (isWebkit == true && $this.filter(':-webkit-autofill')) {
+							//test all the 300 millisec if the input is visible, if it is, fire deter repaint then destruct the interval
+							var intervalListener = setInterval(function() {
+								//if the element is visible
+								if ($this.is(':visible') == true) {
+									//we need to wait the browser fills the input
+									setTimeout(function() {
+										//only if the input is empty
+										if ($this.val() != '') {
+											$this
+												.trigger('repaint');
+										}
+										window.clearInterval(intervalListener);
+									}, 100);
+								}
+							}, 300);
+						} else {
+							//we need to wait the browser fills the input
+							setTimeout(function() {
+								//only if the input is empty
+								if ($this.val() != '') {
+									$this
+										.trigger('repaint');
+								}
+							}, 100);
+
 						}
 					});
-			}, 100);
 
-		});
+			});
+
+	}
 
 })(jQuery);
