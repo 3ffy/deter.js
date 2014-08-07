@@ -1,9 +1,6 @@
 Deter.js : Advanced Uses
 ========================
 
-* auto-gen TOC:
-{:toc}
-
 Change boxes title
 ------------------
 
@@ -27,7 +24,6 @@ By default, deter will draw the identicon canevas (if you use that predefined mo
 
 ```javascript
 $.deter.autofillDrawIdenticon = false;
-});
 ```
 
 Improve text readability with `deter.settings.mode` = `background`
